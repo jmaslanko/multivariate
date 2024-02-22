@@ -361,7 +361,13 @@ display: none;
 <h3>Question 1</h3>
 <p>First, we define the matrix:</p>
 <pre class="r"><code>B &lt;- matrix(c(1, 7, 8, 1, 3, 2, 6, 3, 1, 1, 4, 0, 2, 2, 1, -1), 
-            nrow = 4)</code></pre>
+            nrow = 4)
+B</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    3    1    2
+## [2,]    7    2    1    2
+## [3,]    8    6    4    1
+## [4,]    1    3    0   -1</code></pre>
 <p>Next, we define the function. This function will print the rank, SVD,
 determinant, and inverse of a matrix. This will only be done if the
 matrix is square and not singular.</p>
@@ -429,26 +435,66 @@ matrix is square and not singular.</p>
 ## [3,] -0.05454545 -0.32727273  0.345454545 -0.41818182
 ## [4,]  0.35151515  0.10909091 -0.115151515 -0.19393939</code></pre>
 </div>
-<div id="question-2" class="section level3">
-<h3>Question 2</h3>
-</div>
 <div id="question-3" class="section level3">
 <h3>Question 3</h3>
 <div id="a" class="section level4">
 <h4>[a]</h4>
 <p>Let’s first define the covariance matrix</p>
-<pre class="r"><code>cov &lt;- matrix(c(25, -2, 4, -2, 4, 1, 4, 1, 9), nrow = 3)</code></pre>
+<pre class="r"><code>cov &lt;- matrix(c(25, -2, 4, -2, 4, 1, 4, 1, 9),
+              nrow = 3)
+cov</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]   25   -2    4
+## [2,]   -2    4    1
+## [3,]    4    1    9</code></pre>
 <p>Then, we create the matrix D. This matrix is the square root of the
 diagonal of the covariance matrix we defined above. Additionally, we
 fill the diagonals in with zero’s for matrix multiplication.</p>
-<pre class="r"><code>D &lt;- diag(sqrt(diag(cov)))</code></pre>
-<p>D_inv &lt;- solve(D) cor &lt;- D_inv %<em>% cov %</em>% D_inv</p>
+<pre class="r"><code>D &lt;- diag(sqrt(diag(cov)))
+D</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    5    0    0
+## [2,]    0    2    0
+## [3,]    0    0    3</code></pre>
+<p>Next, we find the inverse of the matrix D.</p>
+<pre class="r"><code>D_inv &lt;- solve(D)
+D_inv</code></pre>
+<pre><code>##      [,1] [,2]      [,3]
+## [1,]  0.2  0.0 0.0000000
+## [2,]  0.0  0.5 0.0000000
+## [3,]  0.0  0.0 0.3333333</code></pre>
+<p>Finally, we compute the correlation matrix by multiplying the inverse
+of D by the covariance matrix and then by the inverse once again. The
+resulting matrix is displayed.</p>
+<pre class="r"><code>cor &lt;- D_inv %*% cov %*% D_inv
+cor</code></pre>
+<pre><code>##            [,1]       [,2]      [,3]
+## [1,]  1.0000000 -0.2000000 0.2666667
+## [2,] -0.2000000  1.0000000 0.1666667
+## [3,]  0.2666667  0.1666667 1.0000000</code></pre>
 </div>
 <div id="b" class="section level4">
 <h4>[b]</h4>
+<p>Because V is a diagonal matrix, we can simply take the square root of
+the diagonal vector. Below, we create V from the covariance matrix and
+then take the square root.</p>
+<pre class="r"><code>V &lt;- diag(diag(cov))
+V_sqrt &lt;- sqrt(V)
+V_sqrt</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    5    0    0
+## [2,]    0    2    0
+## [3,]    0    0    3</code></pre>
 </div>
 <div id="c" class="section level4">
 <h4>[c]</h4>
+<p>When we multiply the matrices together as shown, we get the original
+covariance matrix.</p>
+<pre class="r"><code>V_sqrt %*% cor %*% V_sqrt</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]   25   -2    4
+## [2,]   -2    4    1
+## [3,]    4    1    9</code></pre>
 </div>
 </div>
 
