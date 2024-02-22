@@ -1,0 +1,208 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Homework 2},
+  pdfauthor={Jeremy Maslanko},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Homework 2}
+\author{Jeremy Maslanko}
+\date{2024-02-22}
+
+\begin{document}
+\maketitle
+
+\hypertarget{question-1}{%
+\subsection{Question 1}\label{question-1}}
+
+First, we define the matrix:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{4}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{, }\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{), }\AttributeTok{nrow =} \DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Next, we define the function. This function will print the rank, SVD,
+determinant, and inverse of a matrix. This will only be done if the
+matrix is square and not singular.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{linalg }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(A) \{}
+  
+\NormalTok{  dims }\OtherTok{\textless{}{-}} \FunctionTok{dim}\NormalTok{(A)}
+\NormalTok{  det }\OtherTok{\textless{}{-}} \FunctionTok{det}\NormalTok{(A)}
+  
+  \ControlFlowTok{if}\NormalTok{ (det }\SpecialCharTok{==} \DecValTok{0}\NormalTok{) \{}
+    \FunctionTok{print}\NormalTok{(}\StringTok{"Matrix is singular."}\NormalTok{)}
+\NormalTok{  \} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (dims[}\DecValTok{1}\NormalTok{] }\SpecialCharTok{!=}\NormalTok{ dims[}\DecValTok{2}\NormalTok{]) \{}
+    \FunctionTok{print}\NormalTok{(}\StringTok{"Matix is not square"}\NormalTok{)}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{    rank }\OtherTok{\textless{}{-}} \FunctionTok{qr}\NormalTok{(A)}\SpecialCharTok{$}\NormalTok{rank}
+\NormalTok{    svd }\OtherTok{\textless{}{-}} \FunctionTok{svd}\NormalTok{(A)}
+\NormalTok{    inv }\OtherTok{\textless{}{-}} \FunctionTok{solve}\NormalTok{(A)}
+    
+    \FunctionTok{cat}\NormalTok{(}\StringTok{"Rank of Matrix:}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+    \FunctionTok{print}\NormalTok{(rank)}
+    \FunctionTok{cat}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+    
+    \FunctionTok{cat}\NormalTok{(}\StringTok{"SVD of Matrix:}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+    \FunctionTok{print}\NormalTok{(svd)}
+    \FunctionTok{cat}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+    
+    \FunctionTok{cat}\NormalTok{(}\StringTok{"Det of Matrix:}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+    \FunctionTok{print}\NormalTok{(det)}
+    \FunctionTok{cat}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+    
+    \FunctionTok{cat}\NormalTok{(}\StringTok{"Inverse of Matrix:}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+    \FunctionTok{print}\NormalTok{(inv)}
+\NormalTok{  \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Finally, we see the results when we call the function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{linalg}\NormalTok{(B)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rank of Matrix:
+## [1] 4
+## 
+## SVD of Matrix:
+## $d
+## [1] 13.421740  3.688447  2.248213  1.482498
+## 
+## $u
+##            [,1]       [,2]       [,3]       [,4]
+## [1,] -0.2210812  0.4114000  0.8724057  0.1441576
+## [2,] -0.5323582 -0.6841250  0.1072497  0.4868934
+## [3,] -0.8006332  0.2274669 -0.2265673 -0.5058779
+## [4,] -0.1634144  0.5576574 -0.4196105  0.6973098
+## 
+## $v
+##            [,1]       [,2]        [,3]        [,4]
+## [1,] -0.7835101 -0.5422562 -0.27087966  0.13672714
+## [2,] -0.5231813  0.7872483  0.09495594  0.31225769
+## [3,] -0.2947436  0.1727400  0.03264197 -0.93926651
+## [4,] -0.1597481 -0.2374009  0.95736204  0.03973981
+## 
+## 
+## Det of Matrix:
+## [1] 165
+## 
+## Inverse of Matrix:
+##             [,1]        [,2]         [,3]        [,4]
+## [1,] -0.13939394  0.16363636 -0.006060606  0.04242424
+## [2,]  0.16363636 -0.01818182 -0.036363636  0.25454545
+## [3,] -0.05454545 -0.32727273  0.345454545 -0.41818182
+## [4,]  0.35151515  0.10909091 -0.115151515 -0.19393939
+\end{verbatim}
+
+\end{document}

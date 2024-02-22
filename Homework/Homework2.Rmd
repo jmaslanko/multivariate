@@ -1,0 +1,88 @@
+---
+title: "Homework 2"
+author: "Jeremy Maslanko"
+date: "2024-02-22"
+output:
+  html_document: default
+---
+
+
+
+### Question 1
+
+First, we define the matrix:
+
+```{r}
+B <- matrix(c(1, 7, 8, 1, 3, 2, 6, 3, 1, 1, 4, 0, 2, 2, 1, -1), 
+            nrow = 4)
+```
+
+Next, we define the function.  This function will print the rank, SVD, 
+determinant, and inverse of a matrix.  This will only be done if the matrix is 
+square and not singular.
+
+```{r}
+linalg <- function(A) {
+  
+  dims <- dim(A)
+  det <- det(A)
+  
+  if (det == 0) {
+    print("Matrix is singular.")
+  } else if (dims[1] != dims[2]) {
+    print("Matix is not square")
+  } else {
+    rank <- qr(A)$rank
+    svd <- svd(A)
+    inv <- solve(A)
+    
+    cat("Rank of Matrix:\n")
+    print(rank)
+    cat("\n")
+    
+    cat("SVD of Matrix:\n")
+    print(svd)
+    cat("\n")
+    
+    cat("Det of Matrix:\n")
+    print(det)
+    cat("\n")
+    
+    cat("Inverse of Matrix:\n")
+    print(inv)
+  }
+}
+```
+
+Finally, we see the results when we call the function:
+
+```{r}
+linalg(B)
+```
+
+### Question 2
+
+
+
+### Question 3
+
+#### [a]
+
+Let's first define the covariance matrix
+```{r}
+cov <- matrix(c(25, -2, 4, -2, 4, 1, 4, 1, 9),
+              nrow = 3)
+```
+
+Then, we create the matrix D.  This matrix is the square root of the diagonal of 
+the covariance matrix we defined above.  Additionally, we fill the diagonals in 
+with zero's for matrix multiplication.
+```{r}
+D <- diag(sqrt(diag(cov)))
+```
+D_inv <- solve(D)
+cor <- D_inv %*% cov %*% D_inv
+
+#### [b]
+
+#### [c]
