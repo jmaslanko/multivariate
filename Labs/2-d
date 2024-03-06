@@ -1,0 +1,23 @@
+##Function that illustrates spectral decomposition
+##and statistical distance ellipses
+
+
+SA <- function(X,data.plot=TRUE){
+
+	# Calculate sample mean and covariance
+	#==============================
+	xbar<-apply(X,2,mean)
+	Sigma<-var(X)
+
+	par(bg='white')
+	library(car)
+	ellipse(xbar,Sigma,3,add=FALSE) #c=3
+	ellipse(xbar,Sigma,2,add=TRUE) #c=2
+	ellipse(xbar,Sigma,1,add=TRUE) #c=1
+
+	if (data.plot) points(X[,1],X[,2],pch=20,col=4)
+
+	# eigendecomposition
+	#===============================
+	e<-eigen(Sigma)
+	arrows(xbar[1],xbar[2],xbar[1]+e$vectors[1,1]*sqrt(e$values[1]),xbar[2]+e$vectors[2,1]*sqrt(e$values[1]),length=.1,col='green',lwd=2)
