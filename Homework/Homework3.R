@@ -7,23 +7,25 @@ library(car)
 # Generate 1000 random samples from normal distribution
 x1 <- rnorm(1000, mean = 0, sd = 1)
 
+par(mfrow = c(1, 3))
 # Plot histogram of random samples
-hist(x1, breaks = 30, main = "Histogram of Random Samples",
+hist(x1, breaks = 30, main = "Histogram of X1",
      xlab = "Random Samples", ylab = "Frequency", col = "skyblue", border = "white")
 
 x2 <- ifelse(abs(x1) < 1, -x1, x1)
-hist(x2, breaks = 30, main = "Histogram of Random Samples",
+hist(x2, breaks = 30, main = "Histogram of X2",
      xlab = "Random Samples", ylab = "Frequency", col = "skyblue", border = "white")
 
 
 # Plot joint distribution
 plot(x1, x2, 
      xlab = "x1", ylab = "x2", 
-     main = "Joint Distribution of Two Samples", col = "blue", pch = 19)
+     main = "Scatterplot of X1 vs. X2", col = "blue", pch = 19)
 
 ################
 ## Question 3 ##
 ################
+par(mfrow = c(1,1))
 # a
 S <- matrix(c(5, 4, 4, 5), nrow = 2)
 xbar<-apply(S,2,mean)
