@@ -1,47 +1,4 @@
-
 library(car)
-
-# Question 3
-# a
-S <- matrix(c(5, 4, 4, 5), nrow = 2)
-xbar<-apply(S,2,mean)
-Sigma<-var(S)
-
-eigen_info <- eigen(S)
-eigenvalues <- eigen_info$values
-eigenvectors <- eigen_info$vectors
-
-ellipse(center = xbar, shape = S, radius = 1,
-        angle = atan2(eigenvectors[2, 1], eigenvectors[1, 1]),
-        col = "blue")
-
-par(bg='white')
-
-
-plot(0, 0, type = "n", xlim = c(-8, 8), ylim = c(-8, 8), xlab = "X", ylab = "Y")
-ellipse(center = xbar, shape = S, radius = 1, col = "blue", border = "blue", lwd = 2)
-
-# b
-S <- matrix(c(5, -4, -4, 5), nrow = 2)
-xbar<-apply(S,2,mean)
-Sigma<-var(S)
-
-par(bg='white')
-
-
-plot(0, 0, type = "n", xlim = c(-8, 8), ylim = c(-8, 8), xlab = "X", ylab = "Y")
-ellipse(center = xbar, shape = S, radius = 1, col = "blue", border = "blue", lwd = 2)
-
-# c
-S <- matrix(c(3, 0, 0, 3), nrow = 2)
-xbar<-apply(S,2,mean)
-Sigma<-var(S)
-
-par(bg='white')
-
-
-plot(0, 0, type = "n", xlim = c(-8, 8), ylim = c(-8, 8), xlab = "X", ylab = "Y")
-ellipse(center = xbar, shape = S, radius = 1, col = "blue", border = "blue", lwd = 2)
 
 ################
 ## Question 2 ##
@@ -65,6 +22,76 @@ plot(x1, x2,
      main = "Joint Distribution of Two Samples", col = "blue", pch = 19)
 
 ################
+## Question 3 ##
+################
+# a
+S <- matrix(c(5, 4, 4, 5), nrow = 2)
+xbar<-apply(S,2,mean)
+Sigma<-var(S)
+
+e <- eigen(S)
+eigenvalues <- e$values
+eigenvectors <- e$vectors
+
+
+par(bg='white')
+
+
+plot(0, 0, type = "n", xlim = c(0, 8), ylim = c(0, 8), xlab = "X", ylab = "Y")
+ellipse(center = xbar, shape = S, radius = 1, col = "blue", border = "blue", lwd = 2)
+arrows(xbar[1],xbar[2],xbar[1]+e$vectors[1,1]*sqrt(e$values[1]),xbar[2]+e$vectors[2,1]*sqrt(e$values[1]),length=.1,col='red',lwd=2)
+arrows(xbar[1],xbar[2],xbar[1]+e$vectors[1,2]*sqrt(e$values[2]),xbar[2]+e$vectors[2,2]*sqrt(e$values[2]),length=.1,col='red',lwd=2)
+
+legend("topleft", legend = paste("Radius", 1:length(eigenvalues), ": ", round(sqrt(eigenvalues), 2)), 
+       col = "red", lty = 1, cex = 0.8, bg = "white")
+title("Matrix 1")
+
+# b
+S <- matrix(c(5, -4, -4, 5), nrow = 2)
+xbar<-apply(S,2,mean)
+Sigma<-var(S)
+
+e <- eigen(S)
+eigenvalues <- e$values
+eigenvectors <- e$vectors
+
+par(bg='white')
+
+
+plot(0, 0, type = "n", xlim = c(-4, 4), ylim = c(-4, 4), xlab = "X", ylab = "Y")
+ellipse(center = xbar, shape = S, radius = 1, col = "blue", border = "blue", lwd = 2)
+arrows(xbar[1],xbar[2],xbar[1]+e$vectors[1,1]*sqrt(e$values[1]),xbar[2]+e$vectors[2,1]*sqrt(e$values[1]),length=.1,col='red',lwd=2)
+arrows(xbar[1],xbar[2],xbar[1]+e$vectors[1,2]*sqrt(e$values[2]),xbar[2]+e$vectors[2,2]*sqrt(e$values[2]),length=.1,col='red',lwd=2)
+
+legend("topleft", legend = paste("Radius", 1:length(eigenvalues), ": ", round(sqrt(eigenvalues), 2)), 
+       col = "red", lty = 1, cex = 0.8, bg = "white")
+title("Matrix 2")
+
+# c
+S <- matrix(c(3, 0, 0, 3), nrow = 2)
+xbar<-apply(S,2,mean)
+Sigma<-var(S)
+
+e <- eigen(S)
+eigenvalues <- e$values
+eigenvectors <- e$vectors
+
+par(bg='white')
+
+
+plot(0, 0, type = "n", xlim = c(-4, 4), ylim = c(-4, 4), xlab = "X", ylab = "Y")
+ellipse(center = xbar, shape = S, radius = 1, col = "blue", border = "blue", lwd = 2)
+
+arrows(xbar[1],xbar[2],xbar[1]+e$vectors[1,1]*sqrt(e$values[1]),xbar[2]+e$vectors[2,1]*sqrt(e$values[1]),length=.1,col='red',lwd=2)
+arrows(xbar[1],xbar[2],xbar[1]+e$vectors[1,2]*sqrt(e$values[2]),xbar[2]+e$vectors[2,2]*sqrt(e$values[2]),length=.1,col='red',lwd=2)
+
+legend("topleft", legend = paste("Radius", 1:length(eigenvalues), ": ", round(sqrt(eigenvalues), 2)), 
+       col = "red", lty = 1, cex = 0.8, bg = "white")
+
+title("Matrix 3")
+
+
+################
 ## Question 5 ##
 ################
 
@@ -78,9 +105,7 @@ x <- data[,2:8]
 #x <- as.matrix(x)
 matrix <- as.matrix(x)
 
-## 2-d scatter plots
-pairs(x)
-
+summary(matrix)
 # box plots
 par(mfrow = c(2, 4))
 boxplot(matrix[,1],main="Wind")
@@ -100,6 +125,12 @@ hist(matrix[,4],main="NO",xlab="",col="blue", border="pink")
 hist(matrix[,5],main="NO2",xlab="",col="blue", border="pink")
 hist(matrix[,6],main="O3",xlab="",col="blue", border="pink")
 hist(matrix[,7],main="HC",xlab="",col="blue", border="pink")
+title("A Chi-square Q-Q Plot")
+
+## 2-d scatter plots
+colnames(x) <- c("Wind", "Solar", "CO", "NO", "NO2", "O3", "HC")
+pairs(x)
+cor(x)
 
 # Q-Q plots univariate for each feature
 par(mfrow = c(2, 4))
@@ -123,6 +154,7 @@ for (i in 1:n){
   D2 <- c(D2, d2)
 }
 D2 <- sort(D2)
+par(mfrow = c(1,1))
 qqplot(qchisq((1:n-.5)/n, p), D2, pch=21, bg="blue")
 abline(0,1,col=2) ### intercept 0, slope 1
 title("A Chi-square Q-Q Plot")
